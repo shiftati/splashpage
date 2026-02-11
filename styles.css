@@ -90,9 +90,10 @@ h1 {
 }
 
 .tagline {
-    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
     color: var(--text-secondary);
     font-weight: 300;
+    line-height: 1;
 }
 
 /* Main Content */
