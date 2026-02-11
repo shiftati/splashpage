@@ -263,7 +263,7 @@ footer {
 .speech-bubble {
     position: absolute;
     bottom: 120%;
-    right: 0;
+    right: 50px;
     width: 220px;
     background: white;
     color: #333;
@@ -274,6 +274,7 @@ footer {
     opacity: 1;
     transition: all 0.3s ease;
     pointer-events: none;
+    rotate: 4deg;
 }
 
 .speech-bubble.hidden {
