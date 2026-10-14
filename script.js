@@ -140,6 +140,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 200);
     }, 5_000);
 
+    // Host Avatars Interaction with Klippy
+    const danielAvatar = document.querySelector('.host-card.host-daniel .host-avatar-wrapper');
+    const steAvatar = document.querySelector('.host-card.host-ste .host-avatar-wrapper');
+
+    const danielQuotes = [
+        "Daniel: 'Visita danielzotti.it e scopri tutti gli Easter Egg! 💻",
+        "Daniel è il creativo del duo! 🚀 Scopri i suoi progetti su danielzotti.it!",
+        "Hai cliccato su Daniel! Daniel è confuso da questo click."
+    ];
+
+    const steQuotes = [
+        "Ste: 'Ti ho già letto nel pensiero... stavi per andare su stefanobruno.it!' 🧠",
+        "Stefano è il mago della comunicazione e del mindset! ✨ Dai un'occhiata a stefanobruno.it!",
+        "Attento: Stefano ha appena analizzato il tuo linguaggio corporeo attraverso il monitor! 👀"
+    ];
+
+    function showKlippyMessage(message) {
+        speechBubble.innerHTML = message;
+        speechBubble.classList.remove('hidden');
+        klippyCharacter.style.transform = 'scale(1.2) rotate(-12deg)';
+        setTimeout(() => {
+            klippyCharacter.style.transform = 'scale(1) rotate(0deg)';
+        }, 350);
+    }
+
+    if (danielAvatar) {
+        danielAvatar.style.cursor = 'pointer';
+        danielAvatar.setAttribute('title', 'Clicca per sentire cosa dice Klippy su Daniel!');
+        danielAvatar.addEventListener('click', () => {
+            const quote = danielQuotes[Math.floor(Math.random() * danielQuotes.length)];
+            showKlippyMessage(quote);
+        });
+    }
+
+    if (steAvatar) {
+        steAvatar.style.cursor = 'pointer';
+        steAvatar.setAttribute('title', 'Clicca per sentire cosa dice Klippy su Ste!');
+        steAvatar.addEventListener('click', () => {
+            const quote = steQuotes[Math.floor(Math.random() * steQuotes.length)];
+            showKlippyMessage(quote);
+        });
+    }
+
     console.log("Shiftati di Testa website loaded! 🚀 Se stai leggendo questo, sei un informatico 😏");
 
 });
