@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const funnyMessages = [
         "Ciao! Sono Klippy! 📎",
+        "Ci vediamo il 29 Ottobre al Codemotion Milano! 🎤",
+        "Hai visto le slide del talk 'Provocazioni Artificiali'? Clicca in basso per scoprirle!",
         "Hai ascoltato l'ultima puntata?",
         "Daniel e Stefano sono matti... in senso buono!",
         "Non dimenticare di seguirci sui social!",

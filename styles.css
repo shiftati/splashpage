@@ -531,6 +531,244 @@ main {
     scale: 0.98;
 }
 
+/* Talk Codemotion 2026 Section */
+.talk-section {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    position: relative;
+}
+
+.talk-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.talk-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1.1rem;
+    background: rgba(0, 194, 255, 0.1);
+    border: 1px solid rgba(0, 194, 255, 0.35);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-blue);
+    margin-bottom: 0.9rem;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 194, 255, 0.15);
+}
+
+.talk-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 30%, #ffd0bd 70%, var(--accent-orange) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.talk-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    color: var(--accent-orange);
+    font-weight: 600;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-top: 0.8rem;
+}
+
+.talk-meta .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.talk-meta .meta-separator {
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 400;
+}
+
+.talk-subtitle {
+    color: var(--text-secondary);
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    max-width: 680px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+/* Talk Card */
+.talk-card-wrapper {
+    position: relative;
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+.talk-glow {
+    position: absolute;
+    inset: -15px;
+    border-radius: 34px;
+    background: radial-gradient(circle at 35% 40%, rgba(0, 194, 255, 0.22), rgba(255, 107, 53, 0.18), transparent 70%);
+    filter: blur(35px);
+    opacity: 0.6;
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.talk-card-wrapper:hover .talk-glow {
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+.talk-card {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: linear-gradient(180deg, rgba(26, 29, 36, 0.9) 0%, rgba(18, 20, 26, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 18px 45px -12px rgba(0, 0, 0, 0.65);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+/* Subtle top glow highlight on talk card */
+.talk-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-orange), transparent);
+    z-index: 3;
+    transition: opacity 0.4s ease;
+}
+
+.talk-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 194, 255, 0.45);
+    box-shadow: 0 25px 55px -12px rgba(0, 194, 255, 0.25), 0 0 30px rgba(255, 107, 53, 0.12);
+}
+
+.talk-image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #0a0d14;
+    aspect-ratio: 1024 / 569;
+}
+
+.talk-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.talk-card:hover .talk-preview-img {
+    transform: scale(1.03);
+}
+
+.talk-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 17, 21, 0.8) 0%, rgba(15, 17, 21, 0.15) 50%, transparent 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 2;
+}
+
+.talk-card:hover .talk-image-overlay {
+    opacity: 1;
+}
+
+.talk-overlay-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.6rem;
+    background: rgba(15, 17, 21, 0.85);
+    color: #ffffff;
+    border: 1px solid rgba(0, 194, 255, 0.6);
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 194, 255, 0.35);
+    transform: translateY(12px) scale(0.95);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+.talk-card:hover .talk-overlay-btn {
+    transform: translateY(0) scale(1);
+}
+
+.talk-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.3rem 2rem;
+    background: rgba(18, 20, 26, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    gap: 1rem;
+    z-index: 2;
+}
+
+.talk-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.talk-tagline-small {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.talk-link-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.talk-action-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.7rem 1.4rem;
+    background: var(--gradient-primary);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.25);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.talk-card:hover .talk-action-cta {
+    transform: translateX(4px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.45);
+}
+
 /* Footer */
 footer {
     text-align: center;
@@ -651,5 +889,35 @@ footer {
 
     .host-card {
         padding: 2rem 1.25rem 1.5rem;
+    }
+
+    .talk-section {
+        margin-top: 3.5rem;
+        margin-bottom: 5.5rem;
+    }
+
+    .talk-meta {
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+
+    .talk-meta .meta-separator {
+        display: none;
+    }
+
+    .talk-card-footer {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.2rem 1.2rem;
+    }
+
+    .talk-card-info {
+        align-items: center;
+    }
+
+    .talk-action-cta {
+        justify-content: center;
     }
 }
