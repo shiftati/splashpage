@@ -330,7 +330,7 @@ main {
     position: relative;
     width: 170px;
     height: 170px;
-    margin: 0 auto 1.5rem;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -753,6 +753,7 @@ main {
 .talk-action-cta {
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
     gap: 0.55rem;
     padding: 0.7rem 1.4rem;
     background: var(--gradient-primary);
@@ -767,6 +768,256 @@ main {
 .talk-card:hover .talk-action-cta {
     transform: translateX(4px);
     box-shadow: 0 6px 20px rgba(255, 107, 53, 0.45);
+}
+
+/* Talk Downloads Section (Slides & A4 Notes) */
+.talk-downloads-wrapper {
+    position: relative;
+    max-width: 820px;
+    margin: 3.5rem auto 0;
+}
+
+.talk-downloads-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.talk-downloads-title {
+    font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    letter-spacing: -0.3px;
+}
+
+.talk-downloads-title i {
+    color: var(--accent-orange);
+}
+
+.talk-downloads-subtitle {
+    color: var(--text-secondary);
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    font-weight: 300;
+    margin-top: 0.4rem;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+}
+
+.talk-downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.talk-download-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.6);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.talk-download-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
+    z-index: 3;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.talk-download-card.talk-download-card-a4::before {
+    background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+}
+
+.talk-download-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 107, 53, 0.45);
+    box-shadow: 0 20px 45px -10px rgba(255, 107, 53, 0.22), 0 0 25px rgba(255, 107, 53, 0.08);
+}
+
+.talk-download-card.talk-download-card-a4:hover {
+    border-color: rgba(0, 194, 255, 0.45);
+    box-shadow: 0 20px 45px -10px rgba(0, 194, 255, 0.22), 0 0 25px rgba(0, 194, 255, 0.08);
+}
+
+.talk-download-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #0a0d14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.talk-download-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.talk-download-img-a4 {
+    object-position: top center;
+}
+
+.talk-download-card:hover .talk-download-img {
+    transform: scale(1.04);
+}
+
+.talk-download-pill {
+    position: absolute;
+    top: 0.85rem;
+    left: 0.85rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.32rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    background: rgba(15, 17, 21, 0.85);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.talk-download-pill.pill-slide {
+    color: var(--accent-orange);
+    border: 1px solid rgba(255, 107, 53, 0.4);
+}
+
+.talk-download-pill.pill-a4 {
+    color: var(--accent-blue);
+    border: 1px solid rgba(0, 194, 255, 0.4);
+}
+
+.talk-download-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 17, 21, 0.85) 0%, rgba(15, 17, 21, 0.3) 60%, transparent 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 2;
+}
+
+.talk-download-card:hover .talk-download-overlay {
+    opacity: 1;
+}
+
+.talk-download-overlay-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.65rem 1.3rem;
+    background: rgba(15, 17, 21, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.88rem;
+    backdrop-filter: blur(10px);
+    transform: translateY(10px);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+}
+
+.talk-download-card:hover .talk-download-overlay-btn {
+    transform: translateY(0);
+}
+
+.talk-download-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.35rem 1.5rem;
+    background: rgba(18, 20, 26, 0.75);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    flex: 1;
+    gap: 1.2rem;
+    z-index: 2;
+}
+
+.talk-download-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.talk-download-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.2px;
+}
+
+.talk-download-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    font-weight: 400;
+}
+
+.talk-download-meta {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+    font-weight: 500;
+}
+
+.talk-download-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.75rem 1.3rem;
+    background: var(--gradient-primary);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.92rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.25);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    margin-top: auto;
+}
+
+.talk-download-cta-secondary {
+    background: var(--gradient-secondary);
+    box-shadow: 0 4px 15px rgba(0, 194, 255, 0.25);
+}
+
+.talk-download-card:hover .talk-download-cta {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.45);
+}
+
+.talk-download-card:hover .talk-download-cta-secondary {
+    box-shadow: 0 8px 20px rgba(0, 194, 255, 0.45);
 }
 
 /* Footer */
@@ -919,5 +1170,19 @@ footer {
 
     .talk-action-cta {
         justify-content: center;
+    }
+
+    .talk-downloads-wrapper {
+        margin-top: 2.5rem;
+    }
+
+    .talk-downloads-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .talk-download-card-body {
+        padding: 1.2rem;
+        gap: 1rem;
     }
 }
