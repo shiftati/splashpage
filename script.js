@@ -115,21 +115,41 @@ document.addEventListener('DOMContentLoaded', () => {
         "Benvenuto nel dietro le quinte della tua mente."
     ];
 
-    let messageIndex = 0;
+    function getRandomKlippyMessage() {
+        const currentText = speechBubble.classList.contains('hidden') ? '' : speechBubble.innerHTML;
+        const available = funnyMessages.filter(msg => msg !== currentText);
+        const pool = available.length > 0 ? available : funnyMessages;
+        return pool[Math.floor(Math.random() * pool.length)];
+    }
 
-    // Toggle bubble on click
-    klippyContainer.addEventListener('click', () => {
+    function showKlippyMessage(message) {
+        speechBubble.innerHTML = message;
+        speechBubble.classList.remove('hidden');
+        klippyCharacter.style.transform = 'scale(1.2) rotate(-12deg)';
+        setTimeout(() => {
+            klippyCharacter.style.transform = 'scale(1) rotate(0deg)';
+        }, 350);
+    }
 
-        // Use logic to check if hidden or change text
-        const isHidden = speechBubble.classList.contains('hidden');
+    // Change speech bubble on every click on Klippy
+    klippyContainer.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const newMsg = getRandomKlippyMessage();
+        showKlippyMessage(newMsg);
+    });
 
-        if (isHidden) {
-            // Show new random message
-            const randomMsg = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
-            speechBubble.innerHTML = randomMsg;
-            speechBubble.classList.remove('hidden');
-        } else {
-            // Hide it
+    // Close speech bubble when clicking anywhere outside
+    document.addEventListener('click', (event) => {
+        if (!klippyContainer.contains(event.target) &&
+            !danielAvatar?.contains(event.target) &&
+            !steAvatar?.contains(event.target)) {
+            speechBubble.classList.add('hidden');
+        }
+    });
+
+    // Close on Escape key press
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
             speechBubble.classList.add('hidden');
         }
     });
@@ -158,19 +178,11 @@ document.addEventListener('DOMContentLoaded', () => {
         "Attento: Stefano ha appena analizzato il tuo linguaggio corporeo attraverso il monitor! 👀"
     ];
 
-    function showKlippyMessage(message) {
-        speechBubble.innerHTML = message;
-        speechBubble.classList.remove('hidden');
-        klippyCharacter.style.transform = 'scale(1.2) rotate(-12deg)';
-        setTimeout(() => {
-            klippyCharacter.style.transform = 'scale(1) rotate(0deg)';
-        }, 350);
-    }
-
     if (danielAvatar) {
         danielAvatar.style.cursor = 'pointer';
         danielAvatar.setAttribute('title', 'Clicca per sentire cosa dice Klippy su Daniel!');
-        danielAvatar.addEventListener('click', () => {
+        danielAvatar.addEventListener('click', (event) => {
+            event.stopPropagation();
             const quote = danielQuotes[Math.floor(Math.random() * danielQuotes.length)];
             showKlippyMessage(quote);
         });
@@ -179,7 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (steAvatar) {
         steAvatar.style.cursor = 'pointer';
         steAvatar.setAttribute('title', 'Clicca per sentire cosa dice Klippy su Ste!');
-        steAvatar.addEventListener('click', () => {
+        steAvatar.addEventListener('click', (event) => {
+            event.stopPropagation();
             const quote = steQuotes[Math.floor(Math.random() * steQuotes.length)];
             showKlippyMessage(quote);
         });
